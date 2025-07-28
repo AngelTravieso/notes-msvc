@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:14.18
+#    hostname: notes-db # para usar el hostname en vez del nombre del servicio
+    environment:
+      POSTGRES_USER: angel
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: notes
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - notes-network
+    restart: always
+
+  pgadmin:
+    image: dpage/pgadmin4:snapshot
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@test.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "8082:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - notes-network
+    depends_on:
+      - db
+    restart: always
+
+networks:
+  notes-network:
+
+volumes:
+  postgres-data:
+  pgadmin-data:
