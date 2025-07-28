@@ -1,1 +1,9 @@
-{}
+quarkus:
+  datasource:
+    password: ${POSTGRES_PASSWORD}
+    jdbc:
+      max-size: '13'
+      url: jdbc:postgresql://localhost:5432/notes
+      min-size: '3'
+    db-kind: postgresql
+    username: ${POSTGRES_USER}
