@@ -1,6 +1,7 @@
 quarkus:
   http:
     port: 8080
+  
   datasource:
     db-kind: postgresql
     username: ${POSTGRES_USER}
@@ -9,5 +10,3 @@ quarkus:
       url: jdbc:postgresql://localhost:5432/notes
       max-size: '5'
       min-size: '3'
-  log:
-    level: INFO
